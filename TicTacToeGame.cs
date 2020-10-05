@@ -17,15 +17,16 @@ namespace TicTacToeProgram
         }
         public char myChoice()
         {
+            Console.WriteLine("Enter your choice: x or o");
             string mychoice = Console.ReadLine();
             char Computer;
-            if (mychoice == "X")
+            if (mychoice == "x")
             {
-                Computer = 'O';
+                Computer = 'o';
             }
             else
             {
-                Computer = 'X';
+                Computer = 'x';
             }
             return Computer;
         }
@@ -46,7 +47,7 @@ namespace TicTacToeProgram
                 Console.WriteLine("Possible to move at this location");
                 return true;
             }
-            else if(index <0 || index > 9)
+            else if(index < 0 || index > 9)
             {
                 Console.WriteLine("Enter valid position");
                 return false;
