@@ -41,9 +41,15 @@ namespace TicTacToeProgram
         {
             Console.WriteLine("Enter the index (from 1 to 9) for the move");
             int index = Convert.ToInt32(Console.ReadLine());
-            if (board[index] == ' ')
+            if (board[index] == ' ' && index > 1 && index < 10)
             {
+                Console.WriteLine("Possible to move at this location");
                 return true;
+            }
+            else if(index <0 || index > 9)
+            {
+                Console.WriteLine("Enter valid position");
+                return false;
             }
             else
             {
