@@ -29,5 +29,26 @@ namespace TicTacToeProgram
             }
             return Computer;
         }
+        public void ShowBoard()
+        {
+            Console.WriteLine("  1  |  2  |  3  ");
+            Console.WriteLine(" --------------- ");
+            Console.WriteLine("  4  |  5  |  6 ");
+            Console.WriteLine(" --------------- ");
+            Console.WriteLine("  7  |  8  |  9 ");
+        }
+        public bool isPossible()
+        {
+            Console.WriteLine("Enter the index (from 1 to 9) for the move");
+            int index = Convert.ToInt32(Console.ReadLine());
+            if (board[index] == ' ')
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

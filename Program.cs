@@ -10,6 +10,8 @@ namespace TicTacToeProgram
             TicTacToeGame Game = new TicTacToeGame();
             Game.TicTacToeBoard();
             Game.myChoice();
+            Game.ShowBoard();
+            Game.isPossible();
         }
     }
 }
