@@ -1,0 +1,13 @@
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\bin\Debug\netcoreapp3.1\TicTacToeProgram.exe
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\bin\Debug\netcoreapp3.1\TicTacToeProgram.deps.json
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\bin\Debug\netcoreapp3.1\TicTacToeProgram.runtimeconfig.json
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\bin\Debug\netcoreapp3.1\TicTacToeProgram.runtimeconfig.dev.json
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\bin\Debug\netcoreapp3.1\TicTacToeProgram.dll
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\bin\Debug\netcoreapp3.1\TicTacToeProgram.pdb
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.csprojAssemblyReference.cache
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.AssemblyInfoInputs.cache
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.AssemblyInfo.cs
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.csproj.CoreCompileInputs.cache
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.dll
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.pdb
+C:\Users\Mihir Gautam\source\repos\TicTacToeProgram\TicTacToeProgram\obj\Debug\netcoreapp3.1\TicTacToeProgram.genruntimeconfig.cache
