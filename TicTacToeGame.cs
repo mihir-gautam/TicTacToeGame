@@ -50,5 +50,9 @@ namespace TicTacToeProgram
                 return false;
             }
         }
+        public void makeAMove(int index)
+        {
+            board[index] = myChoice();
+        }
     }
 }
