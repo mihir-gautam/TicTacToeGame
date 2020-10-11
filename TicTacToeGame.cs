@@ -4,10 +4,10 @@ using System.Text;
 
 namespace TicTacToeProgram
 {
-    class TicTacToeGame
+    public class TicTacToeGame
     {
         char[] board = new char[10];
-
+        
         public void TicTacToeBoard()
         {
             for (int i = 1; i < board.Length; i++)
@@ -17,6 +17,7 @@ namespace TicTacToeProgram
         }
         public char myChoice()
         {
+            Console.WriteLine("Your choice X or O");
             string mychoice = Console.ReadLine();
             char Computer;
             if (mychoice == "X")
@@ -27,6 +28,7 @@ namespace TicTacToeProgram
             {
                 Computer = 'X';
             }
+            Console.WriteLine("Succeed");
             return Computer;
         }
         public void ShowBoard()
@@ -47,7 +49,27 @@ namespace TicTacToeProgram
             }
             else
             {
+                Console.WriteLine("Sorry, position is already occupied. \n Select any other position");
                 return false;
+                Console.WriteLine("Enter the index (from 1 to 9) for the move");
+                isPossible();
+            }
+        }
+        public enum Player { USER, COMPUTER };
+        public Player Toss()
+        {
+            Random random = new Random();
+            int toss = random.Next(0, 2);
+            int callForToss = Convert.ToInt32(Console.ReadLine());
+            if (toss == callForToss)
+            {
+                Console.WriteLine("Congratulations! You won the toss.");
+                return Player.USER;
+            }
+            else
+            {
+                Console.WriteLine("Unfortunately, you lost the toss, Computer will play first.");
+                return Player.COMPUTER;
             }
         }
     }
