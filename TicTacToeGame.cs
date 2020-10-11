@@ -96,7 +96,7 @@ namespace TicTacToeProgram
                 PlayerMovement(choice);
             }
         }
-        public void ComputerMovement(char compChoice)
+        public void ComputerMovement(char compChoice, char userChoice)
         {
             int winMove = WinningMove(compChoice);
             if (winMove == 0)
@@ -110,7 +110,7 @@ namespace TicTacToeProgram
                 }
                 else
                 {
-                    ComputerMovement(compChoice);
+                    ComputerMovement(compChoice,userChoice);
                 }
             }
             else
@@ -157,7 +157,7 @@ namespace TicTacToeProgram
                 }
                 else
                 {
-                    ComputerMovement(compChoice);
+                    ComputerMovement(compChoice,userChoice);
                     player = Player.USER;
                 }
                 char userLetter = myChoice();
