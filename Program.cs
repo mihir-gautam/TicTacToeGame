@@ -6,6 +6,7 @@ namespace TicTacToeProgram
     {
         public const int HEAD = 0;
         public const int TAIL = 1;
+        public static char[] board = new char[10];
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to TicTacToe Game");
@@ -14,8 +15,12 @@ namespace TicTacToeProgram
             Game.Toss();
             Game.TicTacToeBoard();
             Game.ShowBoard();
-            Game.isPossible();
-            Game.myChoice(); 
+            Console.WriteLine("Enter the index (from 1 to 9) for the move");
+            int index = Convert.ToInt32(Console.ReadLine());
+            Game.isPossible(index);
+            Game.myChoice();
+            char userLetter = Game.myChoice(); 
+            Console.WriteLine("Check if you won: " + Game.isWinner(board, userLetter));
         }
     }
 }
