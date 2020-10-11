@@ -6,11 +6,11 @@ namespace TicTacToeProgram
 {
     public class TicTacToeGame
     {
-        char[] board = new char[10];
+        public char[] board = new char[10];
 
         public void TicTacToeBoard()
         {
-            for (int i = 1; i < board.Length; i++)
+            for (int i = 1; i < 10; i++)
             {
                 board[i] = ' ';
             }
@@ -48,7 +48,7 @@ namespace TicTacToeProgram
             else
             {
                 Console.WriteLine("Sorry, position is already occupied. \n Select any other position");
-                Console.WriteLine("Enter the index (from 1 to 9) for the move");
+                Console.WriteLine("Select the position you want to play on");
                 isPossible(index); 
                 return false;
             }
@@ -80,6 +80,74 @@ namespace TicTacToeProgram
                     (b[3] == ch && b[6] == ch && b[9] == ch) ||
                     (b[1] == ch && b[5] == ch && b[9] == ch) ||
                     (b[7] == ch && b[5] == ch && b[3] == ch);
+        }
+        public void PlayerMovement(char choice)
+        {
+            int userChoice = Convert.ToInt32(Console.ReadLine());
+            if (isPossible(userChoice))
+            {
+                board[userChoice] = choice;
+                Console.WriteLine("Succeed");
+                ShowBoard();
+            }
+            else
+            {
+                Console.WriteLine("Position already occupied");
+                Console.WriteLine("Try Again");
+                PlayerMovement(choice);
+            }
+        }
+        public void ComputerMovement(char compChoice)
+        {
+            Random random = new Random();
+            int computerChoice = random.Next(1, 10);
+            if (isPossible(computerChoice))
+            {
+                board[computerChoice] = compChoice;
+                ShowBoard();
+            }
+            else
+            {
+                ComputerMovement(compChoice);
+            }
+        }
+        public void GamePlay(char userChoice, char compChoice)
+        {
+            Player player = Toss();
+            bool winner = false;
+            while (winner==false)
+            {
+                if (player.Equals(Player.USER))
+                {
+                    PlayerMovement(userChoice);
+                    player = Player.COMPUTER;
+                }
+                else
+                {
+                    ComputerMovement(compChoice);
+                    player = Player.USER;
+                }
+                char userLetter = myChoice();
+                winner = isWinner(board, userLetter);
+                if (winner == true)
+                {
+                    if (player == Player.USER)
+                    {
+                        Console.WriteLine("Computer won");
+                        break;
+                    }
+                    if (player == Player.COMPUTER)
+                    {
+                        Console.WriteLine("User won");
+                        break;
+                    }
+                }
+                else 
+                {
+                    Console.WriteLine("Game draw");
+                    break;
+                }
+            }
         }
     }
 }
