@@ -18,9 +18,9 @@ namespace TicTacToeProgram
         public char myChoice()
         {
             Console.WriteLine("Your choice X or O");
-            string mychoice = Console.ReadLine();
+            char mychoice = Convert.ToChar(Console.ReadLine());
             char Computer;
-            if (mychoice == "X")
+            if (mychoice == 'X')
             {
                 Computer = 'O';
             }
@@ -29,7 +29,7 @@ namespace TicTacToeProgram
                 Computer = 'X';
             }
             Console.WriteLine("Succeed");
-            return Computer;
+            return mychoice;
         }
         public void ShowBoard()
         {
@@ -98,25 +98,37 @@ namespace TicTacToeProgram
         }
         public void ComputerMovement(char compChoice, char userChoice)
         {
-            int winMove = WinningMove(compChoice);
-            if (winMove == 0)
+            int compWinMove = WinningMove(compChoice);
+            if (compWinMove == 0)
             {
-                Random random = new Random();
-                int computerChoice = random.Next(1, 10);
-                if (isPossible(computerChoice))
+                int userWinMove = WinningMove(userChoice);
+                if (userWinMove == 0)
                 {
-                    board[computerChoice] = compChoice;
-                    ShowBoard();
+                    if ((CornerMove() == 0))
+                    {
+                        Random random = new Random();
+                        int computerChoice = random.Next(1, 10);
+                        if (isPossible(computerChoice))
+                        {
+                            board[computerChoice] = compChoice;
+                            ShowBoard();
+                        }
+                        else
+                        {
+                            ComputerMovement(compChoice, userChoice);
+                        }
+                    }
+                    else
+                    {
+                        board[CornerMove()] = compChoice;
+                        ShowBoard();
+                    }
                 }
                 else
                 {
-                    ComputerMovement(compChoice,userChoice);
+                    board[userWinMove] = compChoice;
+                    ShowBoard();
                 }
-            }
-            else
-            {
-                board[winMove] = compChoice;
-                ShowBoard();
             }
         }
         public int WinningMove(char compChoice)
@@ -157,7 +169,7 @@ namespace TicTacToeProgram
                 }
                 else
                 {
-                    ComputerMovement(compChoice,userChoice);
+                    ComputerMovement(compChoice, userChoice);
                     player = Player.USER;
                 }
                 char userLetter = myChoice();
@@ -180,6 +192,22 @@ namespace TicTacToeProgram
                     }
                 }
             }
+        }
+        public int CornerMove()
+        {
+            int[] corners = { 1, 3, 7, 9 };
+            int freeCorner = 0;
+            foreach (int i in corners)
+            {
+                if (isPossible(i) == true)
+                {
+                    freeCorner = i;
+                    break;
+                }
+                else
+                    continue;
+            }
+            return freeCorner;
         }
     }
 }
