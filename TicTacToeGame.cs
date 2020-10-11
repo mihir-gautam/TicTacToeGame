@@ -33,7 +33,7 @@ namespace TicTacToeProgram
         }
         public void ShowBoard()
         {
-            Console.WriteLine("  1" + board[1] + "  |  2" + board[2]+  "  |  3" + board[3] + "  ");
+            Console.WriteLine("  1" + board[1] + "  |  2" + board[2] + "  |  3" + board[3] + "  ");
             Console.WriteLine(" --------------- ");
             Console.WriteLine("  4" + board[4] + "  |  5" + board[5] + "  |  6" + board[6] + "  ");
             Console.WriteLine(" --------------- ");
@@ -49,7 +49,6 @@ namespace TicTacToeProgram
             {
                 Console.WriteLine("Sorry, position is already occupied. \n Select any other position");
                 Console.WriteLine("Select the position you want to play on");
-                isPossible(index); 
                 return false;
             }
         }
@@ -70,16 +69,16 @@ namespace TicTacToeProgram
                 return Player.COMPUTER;
             }
         }
-        public bool isWinner(char[] b, char ch)
+        public bool isWinner(char ch)
         {
-            return (b[1] == ch && b[2] == ch && b[3] == ch) ||
-                    (b[4] == ch && b[5] == ch && b[6] == ch) ||
-                    (b[7] == ch && b[8] == ch && b[9] == ch) ||
-                    (b[1] == ch && b[4] == ch && b[7] == ch) ||
-                    (b[2] == ch && b[5] == ch && b[8] == ch) ||
-                    (b[3] == ch && b[6] == ch && b[9] == ch) ||
-                    (b[1] == ch && b[5] == ch && b[9] == ch) ||
-                    (b[7] == ch && b[5] == ch && b[3] == ch);
+            return (board[1] == ch && board[2] == ch && board[3] == ch) ||
+                    (board[4] == ch && board[5] == ch && board[6] == ch) ||
+                    (board[7] == ch && board[8] == ch && board[9] == ch) ||
+                    (board[1] == ch && board[4] == ch && board[7] == ch) ||
+                    (board[2] == ch && board[5] == ch && board[8] == ch) ||
+                    (board[3] == ch && board[6] == ch && board[9] == ch) ||
+                    (board[1] == ch && board[5] == ch && board[9] == ch) ||
+                    (board[7] == ch && board[5] == ch && board[3] == ch);
         }
         public void PlayerMovement(char choice)
         {
@@ -99,23 +98,57 @@ namespace TicTacToeProgram
         }
         public void ComputerMovement(char compChoice)
         {
-            Random random = new Random();
-            int computerChoice = random.Next(1, 10);
-            if (isPossible(computerChoice))
+            int winMove = WinningMove(compChoice);
+            if (winMove == 0)
             {
-                board[computerChoice] = compChoice;
-                ShowBoard();
+                Random random = new Random();
+                int computerChoice = random.Next(1, 10);
+                if (isPossible(computerChoice))
+                {
+                    board[computerChoice] = compChoice;
+                    ShowBoard();
+                }
+                else
+                {
+                    ComputerMovement(compChoice);
+                }
             }
             else
             {
-                ComputerMovement(compChoice);
+                board[winMove] = compChoice;
+                ShowBoard();
             }
+        }
+        public int WinningMove(char compChoice)
+        {
+            int winningIndex = 0;
+            for (int i = 1; i < 10; i++)
+            {
+                if (isPossible(i) == true)
+                {
+                    board[i] = compChoice;
+                    if (isWinner('X') == true || isWinner('O') == true)
+                    {
+                        board[i] = ' ';
+                        winningIndex = i;
+                        break;
+                    }
+                    else
+                    {
+                        board[i] = ' ';
+                        winningIndex = 0;
+                        continue;
+                    }
+                }
+                else
+                    continue;
+            }
+            return winningIndex;
         }
         public void GamePlay(char userChoice, char compChoice)
         {
             Player player = Toss();
-            bool winner = false;
-            while (winner==false)
+            while (isWinner('X') == false || isWinner('O') == false)
             {
                 if (player.Equals(Player.USER))
                 {
@@ -128,7 +161,7 @@ namespace TicTacToeProgram
                     player = Player.USER;
                 }
                 char userLetter = myChoice();
-                winner = isWinner(board, userLetter);
+                bool winner = isWinner(userLetter);
                 if (winner == true)
                 {
                     if (player == Player.USER)
@@ -141,11 +174,10 @@ namespace TicTacToeProgram
                         Console.WriteLine("User won");
                         break;
                     }
-                }
-                else 
-                {
-                    Console.WriteLine("Game draw");
-                    break;
+                    else
+                    {
+                        continue;
+                    }
                 }
             }
         }

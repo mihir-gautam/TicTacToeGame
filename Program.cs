@@ -23,8 +23,7 @@ namespace TicTacToeProgram
             else
                 compChoice = 'X';
             Game.ShowBoard();
-            Game.GamePlay(userChoice, compChoice);
-            
+            Game.GamePlay(userChoice, compChoice); 
         }
     }
 }
